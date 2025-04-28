@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args){
         initMenu();
 
-        while(true){
+        while(true){ // 0이 입력되기 전까지 반복 수행
             int choice = selectMenu(menuItemList);
             if(choice == 0) {
                 System.out.println("주문을 종료합니다! 안녕히 가세요!");
@@ -22,7 +22,7 @@ public class App {
         }
     }
 
-    private static void initMenu(){
+    private static void initMenu(){ // 메뉴 아이템 추가
         addMenu(new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
         addMenu(new MenuItem("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
         addMenu(new MenuItem("Cheeseburger", 6900, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
@@ -33,19 +33,23 @@ public class App {
         menuItemList.add(menuItem);
     }
 
+    // 메뉴 출력 후 사용자의 입력을 받는 메서드
     private static int selectMenu(List<MenuItem> menuItemList){
         System.out.println("[ SHAKESHACK MENU ]");
-        for(int i = 1; i <= menuItemList.size(); i++){
+        for(int i = 1; i <= menuItemList.size(); i++){ // menuItemList의 모든 menuItem 출력
             System.out.println(i + ". " + menuItemList.get(i - 1).toString());
         }
         System.out.println("0. 종료      | 종료");
 
-        String input = sc.next();
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("숫자를 입력해주세요!!!");
-            return -1;
+        while (true){ // 숫자 입력을 받을 때까지 반복
+            System.out.print("> ");
+            try {
+                return sc.nextInt();
+            }
+            catch (InputMismatchException e){ // 예외 처리 : 문자를 입력한 경우
+                sc.nextLine();
+                System.out.println("숫자를 입력해주세요!");
+            }
         }
     }
 
