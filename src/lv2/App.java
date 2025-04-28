@@ -24,13 +24,13 @@ public class App {
     }
 
     private static void initMenu(){ // 메뉴 아이템 추가
-        addMenu(new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-        addMenu(new MenuItem("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
-        addMenu(new MenuItem("Cheeseburger", 6900, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
-        addMenu(new MenuItem("Hamburger", 5400, "비프패티를 기반으로 야채가 들어간 기본버거"));
+        addMenuItem(new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
+        addMenuItem(new MenuItem("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
+        addMenuItem(new MenuItem("Cheeseburger", 6900, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
+        addMenuItem(new MenuItem("Hamburger", 5400, "비프패티를 기반으로 야채가 들어간 기본버거"));
     }
 
-    private static void addMenu(MenuItem menuItem){
+    private static void addMenuItem(MenuItem menuItem){
         menuItemList.add(menuItem);
     }
 
@@ -56,10 +56,10 @@ public class App {
 
     private static void handleSelect(int choice){
         switch (choice){
-            case 1: System.out.println("ShackBurger 나왔습니다!"); break;
-            case 2: System.out.println("SmokeShack 나왔습니다!"); break;
-            case 3: System.out.println("Cheeseburger 나왔습니다!"); break;
-            case 4: System.out.println("Hamburger 나왔습니다!"); break;
+            case 1: System.out.println(menuItemList.get(0).getName() + " 나왔습니다!"); break;
+            case 2: System.out.println(menuItemList.get(1).getName() + " 나왔습니다!"); break;
+            case 3: System.out.println(menuItemList.get(2).getName() + " 나왔습니다!"); break;
+            case 4: System.out.println(menuItemList.get(3).getName() + " 나왔습니다!"); break;
             default: System.out.println("잘못된 번호를 입력했습니다. 다시 입력해주세요"); break;
         }
     }
