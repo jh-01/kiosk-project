@@ -15,10 +15,11 @@ public class App {
         while(true){ // 0이 입력되기 전까지 반복 수행
             int choice = selectMenu(menuItemList);
             if(choice == 0) {
-                System.out.println("주문을 종료합니다! 안녕히 가세요!");
-                break;
+                System.out.println("주문을 종료합니다!");
+                sc.close();
+                return;
             }
-            handleSelect(choice);
+            handleSelect(choice); // 0 제외한 메뉴 선택 시의 처리를 메서드로 분리
         }
     }
 

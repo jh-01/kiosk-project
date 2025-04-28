@@ -15,7 +15,10 @@ public class App {
                 case 2: System.out.println("SmokeShack 나왔습니다!"); break;
                 case 3: System.out.println("Cheeseburger 나왔습니다!"); break;
                 case 4: System.out.println("Hamburger 나왔습니다!"); break;
-                case 0: System.out.println("주문을 종료합니다!"); return;
+                case 0:
+                    System.out.println("주문을 종료합니다!");
+                    sc.close();
+                    return;
                 default: System.out.println("잘못된 번호를 입력했습니다. 다시 입력해주세요"); break;
             }
         }
