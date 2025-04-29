@@ -26,8 +26,9 @@ public class Menu {
 
     public void printItems(){
         System.out.println("\n[ " + this.category + " MENU ]");
-        for(int i = 1; i <= menuItemList.size(); i++){
-            System.out.println(i + ". " + menuItemList.get(i - 1).toString());
+        for(int i = 0; i <= menuItemList.size(); i++){
+            MenuItem item = menuItemList.get(i);
+            System.out.println((i + 1) + ". " + item.toString());
         }
         System.out.println("0. 뒤로가기");
     }

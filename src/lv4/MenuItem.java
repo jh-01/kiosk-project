@@ -15,4 +15,16 @@ public class MenuItem {
     public String toString() {
         return String.format("%-15s | W %.1f | %s", name, (double) cost/1000, desc);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public int getCost() {
+        return cost;
+    }
 }

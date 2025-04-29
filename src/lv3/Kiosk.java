@@ -14,7 +14,7 @@ public class Kiosk {
         System.out.println("----------------------------------------------------------");
         initMenu();
         while(true){
-            int choice = selectMenu(menuItemList);
+            int choice = selectMenu();
             if(choice == 0) {
                 System.out.println("주문을 종료합니다! 안녕히 가세요!");
                 break;
@@ -36,7 +36,7 @@ public class Kiosk {
     }
 
     // 메뉴 출력 후 사용자의 입력을 받는 메서드
-    private int selectMenu(List<MenuItem> menuItemList){
+    private int selectMenu(){
         System.out.println("\n[ SHAKESHACK MENU ]");
         for(int i = 1; i <= menuItemList.size(); i++){ // menuItemList의 모든 menuItem 출력
             System.out.println(i + ". " + menuItemList.get(i - 1).toString());
