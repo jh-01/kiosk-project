@@ -31,6 +31,7 @@ public class CartItem {
 
     @Override
     public String toString(){
-        return String.format(menuItem.toString() + " | " + this.count + "개");
+        return String.format("%s (W %.1f) | %d개 | 합계: W %.1f",
+                menuItem.getName(), (double) menuItem.getCost() / 1000, count, (double) getPrice() / 1000);
     }
 }

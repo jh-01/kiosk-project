@@ -59,6 +59,7 @@ public class Kiosk {
 
     // 카테고리에 메뉴 추가
     private void addMenuItem(String category, MenuItem menuItem){
+        // 선택한 카테고리의 Menu 객체 찾기
         Optional<Menu> targetMenu = menus.stream().filter(menu -> menu.getCategory().equals(category)).findFirst();
         targetMenu.ifPresent(menu -> menu.addMenuItem(menuItem));
     }
