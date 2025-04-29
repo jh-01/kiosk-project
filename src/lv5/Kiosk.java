@@ -1,34 +1,31 @@
 package lv5;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class Kiosk {
     private final Scanner sc = new Scanner(System.in);
     private final List<Menu> menus = new ArrayList<>();
 
     public void startKiosk(){
-        initMenu();
+        System.out.println("[SHAKESHACK 키오스크를 실행합니다!!]");
+        System.out.println("----------------------------------------------------------");
+        initMenu(); // 메뉴 초기화
         while(true){
-            int menuChoice = printMenuAndSelect();
-            if(menuChoice == -1 || menuChoice > menus.size() + 1) System.out.println("잘못된 메뉴 선택입니다. 다시 입력해주세요!");
-            else if(menuChoice == 0) {
+            int menuChoice = printMenuAndSelect(); // 메뉴 카테고리 출력 및 선택
+            if(menuChoice == 0) {
                 System.out.println("주문을 종료합니다! 안녕히 가세요!");
                 break;
             }
-            else handleItemSelect(menuChoice);
+            else printItemsAndSelect(menuChoice); // 선택한 메뉴의 아이템을 선택받는 메서드
         }
         sc.close();
     }
 
-    private void initMenu(){
+    private void initMenu(){ // 메뉴 카테고리 및 아이템 초기화
         String[] categories = {"Burgers", "Drinks", "Desserts"};
         for(String category: categories){
             addMenu(category);
         }
-
         addBurgerItems();
         addDrinkItems();
         addDessertItems();
@@ -55,15 +52,18 @@ public class Kiosk {
         addMenuItem("Desserts", new MenuItem("쉐이크", 4500, "진하고 시원한 쉐이크"));
     }
 
+
     private void addMenu(String category){
         menus.add(new Menu(category));
     }
 
+    // 카테고리에 메뉴 추가
     private void addMenuItem(String category, MenuItem menuItem){
         Optional<Menu> targetMenu = menus.stream().filter(menu -> menu.getCategory().equals(category)).findFirst();
         targetMenu.ifPresent(menu -> menu.addMenuItem(menuItem));
     }
 
+    // 생성된 메뉴들의 카테고리 출력
     private int printMenuAndSelect(){
         System.out.println("\n[ MAIN MENU ]");
         for(int i = 0; i < menus.size(); i++){
@@ -73,24 +73,30 @@ public class Kiosk {
         return getUserInput();
     }
 
+    // 사용자 입력을 받는 코드 메서드로 분리
     private int getUserInput(){
-        String input = sc.next();
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("숫자를 입력해주세요!!!");
-            return -1;
+        while (true){ // 숫자 입력을 받을 때까지 반복
+            System.out.print("> ");
+            try {
+                return sc.nextInt();
+            }
+            catch (InputMismatchException e){ // 예외 처리 : 문자를 입력한 경우
+                sc.nextLine();
+                System.out.println("숫자를 입력해주세요!");
+            }
         }
     }
 
-    private void handleItemSelect(int menuChoice){
+    private void printItemsAndSelect(int menuChoice){
         Menu selectedMenu = menus.get(menuChoice - 1);
         while(true){
-            selectedMenu.printItems();
+            selectedMenu.printItemList();
             int itemChoice = getUserInput();
             if(itemChoice == 0) break;
-            if(itemChoice > selectedMenu.getMenuItemListSize() || itemChoice < 1) System.out.println("올바른 메뉴를 선택해주세요!");
-            else System.out.println("선택한 메뉴: " + selectedMenu.getMenuItemByIndex(itemChoice - 1).toString());
+            // 선택한 번호의 MenuItem을 찾아오기
+            MenuItem selectedItem = selectedMenu.getItemByIndex(itemChoice);
+            if(selectedItem == null) System.out.println("올바른 메뉴를 선택해주세요!");
+            else System.out.println("선택한 메뉴: " + selectedItem);
         }
     }
 }

@@ -89,12 +89,13 @@ public class Kiosk {
     private void printItemsAndSelect(int menuChoice){
         Menu selectedMenu = menus.get(menuChoice - 1);
         while(true){
-            selectedMenu.printItems();
+            selectedMenu.printItemList();
             int itemChoice = getUserInput();
             if(itemChoice == 0) break;
-            // 입력한 값이 현재의 메뉴아이템 리스트의 사이즈보다 크거나 음수인 경우
-            if(itemChoice > selectedMenu.getMenuItemList().size() || itemChoice < 0) System.out.println("올바른 메뉴를 선택해주세요!");
-            else System.out.println("선택한 메뉴: " + selectedMenu.getMenuItemList().get(itemChoice - 1).toString());
+            // 선택한 번호의 MenuItem을 찾아오기
+            MenuItem selectedItem = selectedMenu.getItemByIndex(itemChoice);
+            if(selectedItem == null) System.out.println("올바른 메뉴를 선택해주세요!");
+            else System.out.println("선택한 메뉴: " + selectedItem);
         }
     }
 }
