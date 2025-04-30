@@ -78,7 +78,7 @@ src/
 ---
 
 ## 📁주요 클래스 (advanced 패키지 하위)
-![Main]()
+![Main](https://github.com/user-attachments/assets/eddcd8a7-a060-4b92-a60f-088ab5aec194)
 
 | 클래스         | 역할 |
 |----------------|------|
