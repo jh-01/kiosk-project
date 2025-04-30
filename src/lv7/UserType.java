@@ -19,19 +19,15 @@ public enum UserType {
         return type;
     }
 
+    // 번호에 해당하는 UserType 반환
     public static UserType getUserTypeByIndex(int index){
-        return switch (index) {
-            case 1 -> ADULT;
-            case 2 -> STUDENT;
-            case 3 -> SENIOR;
-            case 4 -> CHILD;
-            case 5 -> DISABLED;
-            case 6 -> PREGNANT;
-            case 7 -> VETERAN;
-            default -> throw new IllegalArgumentException("잘못된 번호입니다. 다시 값을 입력하세요.");
-        };
+        if(index > 0 && index <= UserType.values().length) {
+            return UserType.values()[index - 1];
+        }
+        else throw new IllegalArgumentException("잘못된 번호입니다. 다시 값을 입력하세요.");
     }
 
+    // 할인율 반환
     public double getDiscountRate(){
         return switch (this) {
             case ADULT -> 0;
@@ -43,6 +39,7 @@ public enum UserType {
 
     }
 
+    // 주어진 금액에 대해 할인 적용된 가격 반환
     public double doDiscount(int price){
         return price * (1 - getDiscountRate());
     }

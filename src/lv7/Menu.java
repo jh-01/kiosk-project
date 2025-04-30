@@ -35,4 +35,10 @@ public class Menu {
         }
         System.out.println("0. 뒤로가기");
     }
+
+    public MenuItem getItemByIndex(int itemChoice){
+        // 입력한 값이 현재의 메뉴아이템 리스트의 사이즈보다 크거나 음수인 경우
+        if(itemChoice > menuItemList.size() || itemChoice < 0) return null;
+        else return menuItemList.get(itemChoice - 1);
+    }
 }
