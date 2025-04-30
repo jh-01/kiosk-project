@@ -11,14 +11,14 @@ public class Cart {
 
     public void addCartItem(MenuItem menuItem){
         Optional<CartItem> targetItem = findCartItem(menuItem);
-        if(targetItem.isPresent()) targetItem.get().addMenuItem();
+        if(targetItem.isPresent()) targetItem.get().incrementCount();
         else cartItems.add(new CartItem(menuItem));
     }
 
     public void subCartItem(MenuItem menuItem){
         Optional<CartItem> targetItem = findCartItem(menuItem);
         targetItem.ifPresent(cartItem -> {
-            if(cartItem.getCount() > 1) cartItem.subtractMenuItem();
+            if(cartItem.getCount() > 1) cartItem.decrementCount();
             else cartItems.remove(cartItem);
         });
     }

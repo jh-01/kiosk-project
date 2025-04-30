@@ -21,11 +21,11 @@ public class CartItem {
         return menuItem.getCost() * count;
     }
 
-    public void addMenuItem(){
+    public void incrementCount(){
         this.count++;
     }
 
-    public void subtractMenuItem(){
+    public void decrementCount(){
         this.count--;
     }
 
